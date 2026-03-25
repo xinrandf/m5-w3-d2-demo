@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UpdateList from "./UpdateList";
-
+import DeleteList from "./DeleteList";
 function Lists(props) {
   return (
     <table className="table table-striped">
@@ -16,20 +16,29 @@ function Lists(props) {
       </thead>
 
       <tbody>
-        {props.alldata.map((item) => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
-            <td>{item.title}</td>
-            <td>{item.author}</td>
+        {props.alldata.map((element) => (
+          <tr key={element.id}>
+            <td>{element.id}</td>
+            <td>{element.title}</td>
+            <td>{element.author}</td>
 
             <td>
-              <UpdateList item={item} updateList={props.updateList} />
+              <UpdateList
+                elementId={element.id}
+                singledata={props.singledata}
+                getList={props.getList}
+                updateList={props.updateList}
+                handleChange={props.handleChange}
+              />
             </td>
 
             <td>
-              <button type="button" className="btn btn-danger">
-                Delete
-              </button>
+              <DeleteList
+                elementId={element.id}
+                singledata={props.singledata}
+                getList={props.getList}
+                deleteList={props.deleteList}
+              />
             </td>
           </tr>
         ))}

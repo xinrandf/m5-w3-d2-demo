@@ -115,6 +115,24 @@ updateList = (event, id) => {
     .catch((error) => console.log(error));
 };
 
+deleteList = (event, id) => {
+  fetch("http://localhost:5000/posts/" + id, {
+    method: "DELETE"
+  })
+    .then((res) => res.json())
+    .then(() => {
+      this.setState({
+        singledata: {
+          title: "",
+          author: ""
+        }
+      });
+
+      this.getLists();
+    })
+    .catch((error) => console.log(error));
+};
+
   render() {
     const listTable = this.state.loading ? (
       <span>Loading Data.......Please be patience.</span>
@@ -123,6 +141,7 @@ updateList = (event, id) => {
   singledata={this.state.singledata}
   getList={this.getList}
   updateList={this.updateList}
+  deleteList={this.deleteList}
   handleChange={this.handleChange} />
     );
 

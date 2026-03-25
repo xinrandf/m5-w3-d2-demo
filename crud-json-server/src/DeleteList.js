@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-function UpdateList(props) {
+function DeleteList(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -16,12 +16,12 @@ function UpdateList(props) {
           props.getList(evt, props.elementId);
         }}
       >
-        Update
+        Delete
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Update List</Modal.Title>
+          <Modal.Title>Delete List</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -30,7 +30,7 @@ function UpdateList(props) {
             placeholder="Title"
             name="title"
             value={props.singledata.title}
-            onChange={props.handleChange}
+            disabled={true}
             className="d-block my-3"
           />
 
@@ -39,7 +39,7 @@ function UpdateList(props) {
             placeholder="Author"
             name="author"
             value={props.singledata.author}
-            onChange={props.handleChange}
+            disabled={true}
             className="d-block my-3"
           />
         </Modal.Body>
@@ -53,10 +53,10 @@ function UpdateList(props) {
             variant="primary"
             onClick={(event) => {
               handleClose();
-              props.updateList(event, props.elementId);
+              props.deleteList(event, props.elementId);
             }}
           >
-            Update
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>
@@ -64,4 +64,4 @@ function UpdateList(props) {
   );
 }
 
-export default UpdateList;
+export default DeleteList;
