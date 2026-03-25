@@ -1,29 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import UpdateList from "./UpdateList";
 
 function Lists(props) {
-  let listrows = [];
-
-  props.alldata.forEach((element) => {
-    listrows.push(
-      <tr key={element.id}>
-        <td>{element.id}</td>
-        <td>{element.title}</td>
-        <td>{element.author}</td>
-        <td>
-          <button type="button" className="btn btn-warning btn-sm">
-            Update
-          </button>
-        </td>
-        <td>
-          <button type="button" className="btn btn-danger btn-sm">
-            Delete
-          </button>
-        </td>
-      </tr>
-    );
-  });
-
   return (
     <table className="table table-striped">
       <thead>
@@ -35,7 +14,26 @@ function Lists(props) {
           <th>Delete</th>
         </tr>
       </thead>
-      <tbody>{listrows}</tbody>
+
+      <tbody>
+        {props.alldata.map((item) => (
+          <tr key={item.id}>
+            <td>{item.id}</td>
+            <td>{item.title}</td>
+            <td>{item.author}</td>
+
+            <td>
+              <UpdateList item={item} updateList={props.updateList} />
+            </td>
+
+            <td>
+              <button type="button" className="btn btn-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
