@@ -16,7 +16,7 @@ class App extends React.Component {
   getLists = () => {
     this.setState({ loading: true });
 
-    fetch("http://localhost:5000/posts")
+    fetch("http://localhost:5000/books")
       .then((response) => response.json())
       .then((result) => {
         this.setState({
